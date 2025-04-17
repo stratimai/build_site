@@ -1,2 +1,6 @@
 # build_site
-Living site to track the progress of the project
+
+This is the developer-facing project space for StratimAI – an intelligent Earth Observation API platform.
+
+📍 Live site: https://build.stratimai.com  
+📬 Contact: hello@stratimai.com
