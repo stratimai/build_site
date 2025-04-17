@@ -1,58 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StratimAI — Satellite data that just works</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <title>StratimAI</title>
   <style>
     body {
-      font-family: system-ui, sans-serif;
-      background: #f5f9fb;
-      color: #1a1a1a;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 5vh 2rem;
-    }
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 0.5rem;
-    }
-    p, ul {
-      font-size: 1.1rem;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #222;
       line-height: 1.6;
-      color: #444;
     }
-    ul { padding-left: 1.2rem; }
-    a { color: #005bbb; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .center { text-align: center; margin-top: 2rem; }
-    .logo { display: block; margin: 0 auto 1.5rem; width: 100px; }
+    header, section, footer {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #111;
+    }
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    .hero img {
+      max-width: 100px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 2.8em;
+      margin-bottom: 0.4em;
+    }
+    .hero p {
+      font-size: 1.25em;
+      color: #555;
+    }
+    .positioning, .tech-context {
+      background: #ffffff;
+      margin-top: 30px;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .positioning p, .tech-context p {
+      font-size: 1.1em;
+      color: #333;
+    }
+    footer {
+      font-size: 0.9em;
+      color: #666;
+      text-align: center;
+    }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <img class="logo" src="logo.png" alt="StratimAI logo" />
-  <h1>StratimAI</h1>
-  <p class="center"><em>Making Earth Observation data usable, intelligent, and secure.</em></p>
 
-  <hr>
+  <header class="hero">
+    <img src="logo.png" alt="StratimAI Logo">
+    <h1>Satellite data that just works.</h1>
+    <p>The universal API for Earth Observation — designed for developers, analysts, and machines that need clean, live, intelligent spatial data.</p>
+  </header>
 
-  <h2>🛠️ What We’re Building</h2>
-  <ul>
-    <li>Standardized API for satellite data from multiple providers</li>
-    <li>On-the-fly projection handling and tiling</li>
-    <li>STAC-compatible metadata interface</li>
-    <li>Natural language → geospatial query interface (AI layer)</li>
-    <li>Secure data federation via Dataspace Lab concepts</li>
-  </ul>
+  <section class="positioning">
+    <h2>One API. Any Orbit.</h2>
+    <p>
+      StratimAI standardizes satellite data across public and private providers,
+      handles projections and transformations, and delivers insights through developer-first APIs. 
+      No more wrangling tiles, bounding boxes, or formats. Just plug in and build.
+    </p>
+  </section>
 
-  <h2>📓 Changelog</h2>
-  <ul>
-    <li><strong>Apr 18:</strong> GitHub Pages live at build.stratimai.com ✅</li>
-  </ul>
+  <section class="tech-context">
+    <h3>Built by people who’ve been there.</h3>
+    <p>
+      Earth Observation should be easier. We’re building StratimAI to remove the nonsense — from EPSG codes to file types — and give builders what they need: reliable, composable, high-precision data from orbit to application.
+    </p>
+  </section>
 
-  <div class="center">
-    <p>📬 <a href="mailto:hello@stratimai.com">hello@stratimai.com</a></p>
-  </div>
+  <footer>
+    <p>&copy; 2025 StratimAI. All rights reserved. | <a href="mailto:hello@stratimai.com">hello@stratimai.com</a></p>
+  </footer>
+
 </body>
 </html>
