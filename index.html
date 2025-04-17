@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,49 +15,68 @@
       color: #222;
       line-height: 1.6;
     }
-    header, section, footer {
+
+    header,
+    section,
+    footer {
       padding: 60px 20px;
       max-width: 800px;
       margin: auto;
     }
-    h1, h2, h3 {
+
+    h1,
+    h2,
+    h3 {
       color: #111;
     }
+
     a {
       color: #0077cc;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
     .hero {
       background: #fdfdfd;
       border-bottom: 1px solid #ddd;
       text-align: center;
     }
+
     .hero img {
       max-width: 100px;
       margin-bottom: 20px;
     }
+
     .hero h1 {
       font-size: 2.8em;
       margin-bottom: 0.4em;
     }
+
     .hero p {
       font-size: 1.25em;
       color: #555;
     }
-    .positioning, .tech-context, .demo-section {
+
+    .positioning,
+    .tech-context,
+    .demo-section {
       background: #fdfdfd;
       margin-top: 30px;
       border-radius: 10px;
       padding: 30px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
-    .positioning p, .tech-context p, .demo-section p {
+
+    .positioning p,
+    .tech-context p,
+    .demo-section p {
       font-size: 1.1em;
       color: #333;
     }
+
     .demo-section input[type="text"] {
       width: 100%;
       padding: 12px;
@@ -69,6 +89,7 @@
       border-radius: 5px;
       box-sizing: border-box;
     }
+
     .demo-section pre {
       width: 100%;
       background: #1e1e1e;
@@ -80,7 +101,12 @@
       overflow-x: auto;
       box-sizing: border-box;
       margin-top: 0;
+      max-height: 320px;
+      min-height: 320px;
+      overflow-y: auto;
+      white-space: pre-wrap;
     }
+
     footer {
       font-size: 0.9em;
       color: #666;
@@ -89,19 +115,21 @@
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
   <header class="hero">
     <img src="logo.png" alt="StratimAI Logo">
     <h1>Satellite data that just works.</h1>
-    <p>The universal API for Earth Observation — designed for developers, analysts, and machines that need clean, live, intelligent spatial data.</p>
+    <p>The universal API for Earth Observation — designed for developers, analysts, and machines that need clean, live,
+      intelligent spatial data.</p>
   </header>
 
   <section class="positioning">
     <h2>One API. Any Orbit.</h2>
     <p>
       StratimAI standardizes satellite data across public and private providers,
-      handles projections and transformations, and delivers insights through developer-first APIs. 
+      handles projections and transformations, and delivers insights through developer-first APIs.
       No more wrangling tiles, bounding boxes, or formats. Just plug in and build.
     </p>
   </section>
@@ -109,7 +137,8 @@
   <section class="tech-context">
     <h3>Built by people who’ve been there.</h3>
     <p>
-      Earth Observation should be easier. We’re building StratimAI to remove the nonsense — from EPSG codes to file types — and give builders what they need: reliable, composable, high-precision data from orbit to application.
+      Earth Observation should be easier. We’re building StratimAI to remove the nonsense — from EPSG codes to file
+      types — and give builders what they need: reliable, composable, high-precision data from orbit to application.
     </p>
   </section>
 
@@ -125,72 +154,73 @@
   </footer>
 
   <script>
-  const input = document.getElementById('queryInput');
-  const responseBox = document.getElementById('responseBox');
+    const input = document.getElementById('queryInput');
+    const responseBox = document.getElementById('responseBox');
 
-  const demoQueries = [
-  "Hej Mai, what is the likelihood of forest fire in Tjörn?",
-  "Hej Mai, show me flood risk data for Malmö this week",
-  "Hej Mai, is the land in Kiruna suitable for reforestation?",
-  "Hej Mai, how dry is the terrain around Örebro right now?",
-  "Hej Mai, show me NDVI trends for Gothenburg"
-];
+    const demoQueries = [
+      "Hej Mai, what is the likelihood of forest fire in Tjörn?",
+      "Hej Mai, show me flood risk data for Malmö this week",
+      "Hej Mai, is the land in Kiruna suitable for reforestation?",
+      "Hej Mai, how dry is the terrain around Örebro right now?",
+      "Hej Mai, show me NDVI trends for Gothenburg"
+    ];
 
-  function simulateQuery(index = 0) {
-  if (index >= demoQueries.length) index = 0;
+    function simulateQuery(index = 0) {
+      if (index >= demoQueries.length) index = 0;
 
-  const query = demoQueries[index];
-  input.value = '';
-  responseBox.textContent = '';
+      const query = demoQueries[index];
+      input.value = '';
+      responseBox.textContent = '';
 
-  let qIndex = 0;
-  const typeQuery = setInterval(() => {
-    input.value += query[qIndex];
-    qIndex++;
-    if (qIndex >= query.length) {
-      clearInterval(typeQuery);
-      simulateInference(index, query);
+      let qIndex = 0;
+      const typeQuery = setInterval(() => {
+        input.value += query[qIndex];
+        qIndex++;
+        if (qIndex >= query.length) {
+          clearInterval(typeQuery);
+          simulateInference(index, query);
+        }
+      }, 50);
     }
-  }, 50);
-}
 
-function simulateInference(index, query) {
-  const responseLines = [
-    '> Running geospatial inference...',
-    '',
-    `> Region: ${query.includes('Tjörn') ? "Tjörn, Sweden" :
-               query.includes('Malmö') ? "Malmö, Sweden" :
-               query.includes('Kiruna') ? "Kiruna, Sweden" :
-               query.includes('Örebro') ? "Örebro, Sweden" :
-               "Gothenburg, Sweden"}`,
-    `> Report date: ${new Date().toISOString().split('T')[0]}`,
-    '> Risk level: High',
-    '> Confidence: 87%',
-    '> Key factors:',
-    '> - Vegetation dryness: 0.92',
-    '> - Temperature anomaly: +1.4°C',
-    '> - Wind speed: 6.2 m/s',
-    '> - NDVI: 0.21, LSWI: -0.34',
-    '> Recommendations:',
-    '> - Issue warning to forestry operators',
-    '> - Activate local monitoring drones',
-    '> - Limit open flames and machinery use'
-  ];
+    function simulateInference(index, query) {
+      const responseLines = [
+        '> Running geospatial inference...',
+        '',
+        `> Region: ${query.includes('Tjörn') ? "Tjörn, Sweden" :
+          query.includes('Malmö') ? "Malmö, Sweden" :
+            query.includes('Kiruna') ? "Kiruna, Sweden" :
+              query.includes('Örebro') ? "Örebro, Sweden" :
+                "Gothenburg, Sweden"}`,
+        `> Report date: ${new Date().toISOString().split('T')[0]}`,
+        '> Risk level: High',
+        '> Confidence: 87%',
+        '> Key factors:',
+        '> - Vegetation dryness: 0.92',
+        '> - Temperature anomaly: +1.4°C',
+        '> - Wind speed: 6.2 m/s',
+        '> - NDVI: 0.21, LSWI: -0.34',
+        '> Recommendations:',
+        '> - Issue warning to forestry operators',
+        '> - Activate local monitoring drones',
+        '> - Limit open flames and machinery use'
+      ];
 
-  let lineIndex = 0;
-  const printLine = setInterval(() => {
-    responseBox.textContent += responseLines[lineIndex] + '\n';
-    lineIndex++;
-    if (lineIndex >= responseLines.length) {
-      clearInterval(printLine);
-      setTimeout(() => simulateQuery(index + 1), 6000);
+      let lineIndex = 0;
+      const printLine = setInterval(() => {
+        responseBox.textContent += responseLines[lineIndex] + '\n';
+        lineIndex++;
+        if (lineIndex >= responseLines.length) {
+          clearInterval(printLine);
+          setTimeout(() => simulateQuery(index + 1), 6000);
+        }
+      }, 300);
     }
-  }, 300);
-}
 
-let queryIndex = 0;
-simulateQuery(queryIndex);
-</script>
+    let queryIndex = 0;
+    simulateQuery(queryIndex);
+  </script>
 
 </body>
+
 </html>
