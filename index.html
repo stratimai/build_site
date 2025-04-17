@@ -10,7 +10,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f4f4f4;
+      background: #eceff1;
       color: #222;
       line-height: 1.6;
     }
@@ -30,7 +30,7 @@
       text-decoration: underline;
     }
     .hero {
-      background: #ffffff;
+      background: #fdfdfd;
       border-bottom: 1px solid #ddd;
       text-align: center;
     }
@@ -46,16 +46,40 @@
       font-size: 1.25em;
       color: #555;
     }
-    .positioning, .tech-context {
-      background: #ffffff;
+    .positioning, .tech-context, .demo-section {
+      background: #fdfdfd;
       margin-top: 30px;
       border-radius: 10px;
       padding: 30px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
-    .positioning p, .tech-context p {
+    .positioning p, .tech-context p, .demo-section p {
       font-size: 1.1em;
       color: #333;
+    }
+    .demo-section input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1em;
+      margin-bottom: 10px;
+      border: none;
+      background: #1e1e1e;
+      color: #e0e0e0;
+      font-family: monospace;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .demo-section pre {
+      width: 100%;
+      background: #1e1e1e;
+      color: #00ffae;
+      padding: 20px;
+      border-radius: 6px;
+      font-size: 0.95em;
+      font-family: monospace;
+      overflow-x: auto;
+      box-sizing: border-box;
+      margin-top: 0;
     }
     footer {
       font-size: 0.9em;
@@ -89,9 +113,84 @@
     </p>
   </section>
 
+  <section class="demo-section">
+    <h3>🧪 Try a Demo</h3>
+    <p>Type a natural language query below to see a structured response.</p>
+    <input type="text" id="queryInput" readonly>
+    <pre id="responseBox"></pre>
+  </section>
+
   <footer>
     <p>&copy; 2025 StratimAI. All rights reserved. | <a href="mailto:hello@stratimai.com">hello@stratimai.com</a></p>
   </footer>
+
+  <script>
+  const input = document.getElementById('queryInput');
+  const responseBox = document.getElementById('responseBox');
+
+  const demoQueries = [
+  "Hej Mai, what is the likelihood of forest fire in Tjörn?",
+  "Hej Mai, show me flood risk data for Malmö this week",
+  "Hej Mai, is the land in Kiruna suitable for reforestation?",
+  "Hej Mai, how dry is the terrain around Örebro right now?",
+  "Hej Mai, show me NDVI trends for Gothenburg"
+];
+
+  function simulateQuery(index = 0) {
+  if (index >= demoQueries.length) index = 0;
+
+  const query = demoQueries[index];
+  input.value = '';
+  responseBox.textContent = '';
+
+  let qIndex = 0;
+  const typeQuery = setInterval(() => {
+    input.value += query[qIndex];
+    qIndex++;
+    if (qIndex >= query.length) {
+      clearInterval(typeQuery);
+      simulateInference(index, query);
+    }
+  }, 50);
+}
+
+function simulateInference(index, query) {
+  const responseLines = [
+    '> Running geospatial inference...',
+    '',
+    `> Region: ${query.includes('Tjörn') ? "Tjörn, Sweden" :
+               query.includes('Malmö') ? "Malmö, Sweden" :
+               query.includes('Kiruna') ? "Kiruna, Sweden" :
+               query.includes('Örebro') ? "Örebro, Sweden" :
+               "Gothenburg, Sweden"}`,
+    `> Report date: ${new Date().toISOString().split('T')[0]}`,
+    '> Risk level: High',
+    '> Confidence: 87%',
+    '> Key factors:',
+    '> - Vegetation dryness: 0.92',
+    '> - Temperature anomaly: +1.4°C',
+    '> - Wind speed: 6.2 m/s',
+    '> - NDVI: 0.21, LSWI: -0.34',
+    '> Recommendations:',
+    '> - Issue warning to forestry operators',
+    '> - Activate local monitoring drones',
+    '> - Limit open flames and machinery use'
+  ];
+
+  let lineIndex = 0;
+  const printLine = setInterval(() => {
+    responseBox.textContent += responseLines[lineIndex] + '\n';
+    lineIndex++;
+    if (lineIndex >= responseLines.length) {
+      clearInterval(printLine);
+      setTimeout(() => simulateQuery(index + 1), 6000);
+    }
+  }, 300);
+}
+
+let queryIndex = 0;
+simulateQuery(queryIndex);
+</script>
 
 </body>
 </html>
