@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StratimAI — Satellite data that just works</title>
+  <title>StratimAI — Full-Stack Earth Intelligence Platform</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     body {
@@ -15,7 +14,6 @@
       color: #222;
       line-height: 1.6;
     }
-
     header,
     section,
     footer {
@@ -23,43 +21,35 @@
       max-width: 800px;
       margin: auto;
     }
-
     h1,
     h2,
     h3 {
       color: #111;
     }
-
     a {
       color: #0077cc;
       text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
     }
-
     .hero {
       background: #fdfdfd;
       border-bottom: 1px solid #ddd;
       text-align: center;
     }
-
     .hero img {
       max-width: 100px;
       margin-bottom: 20px;
     }
-
     .hero h1 {
       font-size: 2.8em;
       margin-bottom: 0.4em;
     }
-
     .hero p {
       font-size: 1.25em;
       color: #555;
     }
-
     .positioning,
     .tech-context,
     .demo-section {
@@ -69,14 +59,12 @@
       padding: 30px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
-
     .positioning p,
     .tech-context p,
     .demo-section p {
       font-size: 1.1em;
       color: #333;
     }
-
     .demo-section input[type="text"] {
       width: 100%;
       padding: 12px;
@@ -89,7 +77,6 @@
       border-radius: 5px;
       box-sizing: border-box;
     }
-
     .demo-section pre {
       width: 100%;
       background: #1e1e1e;
@@ -106,7 +93,6 @@
       overflow-y: auto;
       white-space: pre-wrap;
     }
-
     footer {
       font-size: 0.9em;
       color: #666;
@@ -115,39 +101,63 @@
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
   <header class="hero">
     <img src="logo.png" alt="StratimAI Logo">
-    <h1>Satellite data that just works.</h1>
-    <p>The universal API for Earth Observation — designed for developers, analysts, and machines that need clean, live,
-      intelligent spatial data.</p>
+    <h1>Earth Observation, made usable.</h1>
+    <p>The universal API for EO data — transforming satellite streams into real-time, structured insights anyone can build on.</p>
   </header>
-
+  
   <section class="positioning">
-    <h2>One API. Any Orbit.</h2>
-    <p>
-      StratimAI standardizes satellite data across public and private providers,
-      handles projections and transformations, and delivers insights through developer-first APIs.
-      No more wrangling tiles, bounding boxes, or formats. Just plug in and build.
-    </p>
+    <h2>Why is EO data still so hard to use?</h2>
+    <p>Despite a sky full of satellites beaming back a firehose of information — imagery, radar, thermal, atmospheric sensors — most Earth data sits unused. It’s trapped behind incompatible formats, fragmented catalogs, and hard-to-scale infrastructure.</p>
+    <p>Organizations face familiar pain points:</p>
+    <ul>
+      <li><strong>Fragmented sources:</strong> EO data comes from dozens of constellations, each with their own quirks.</li>
+      <li><strong>Heavy processing:</strong> Whether it's cloud masks, georeferencing, or radar scan conversion, the burden falls on the user.</li>
+      <li><strong>Specialist silos:</strong> Remote sensing, GIS, and ML expertise are scarce — and often required just to ask simple questions.</li>
+      <li><strong>Slow paths to insight:</strong> Turning complex sensor readings into useful signals takes too long.</li>
+    </ul>
+    <p>EO data should empower more than just a handful of technical teams. StratimAI is here to change that.</p>
   </section>
-
-  <section class="tech-context">
-    <h3>Built by people who’ve been there.</h3>
-    <p>
-      Earth Observation should be easier. We’re building StratimAI to remove the nonsense — from EPSG codes to file
-      types — and give builders what they need: reliable, composable, high-precision data from orbit to application.
-    </p>
+  
+  <section class="positioning">
+    <h2>All sensors. One API.</h2>
+    <p>StratimAI unifies optical imagery, radar, thermal, atmospheric, and more — abstracting away the complexity of sourcing, transforming, and analyzing satellite data. Whether it’s public data (Sentinel, Landsat), commercial providers, or environmental feeds, everything flows through a single, developer-ready API.</p>
+    <p>No more decoding EPSG codes, querying obscure metadata, or setting up your own cloud pipelines. Just ask for the insight you need, and get structured results you can trust.</p>
   </section>
-
+  
+  <section class="positioning">
+    <h2>From data to decision</h2>
+    <p>StratimAI doesn’t just serve data — it runs the analysis too. Our backend processes every EO stream through prebuilt, extensible AI workflows: detecting changes, classifying land and water use, measuring vegetation health, estimating flood risk, mapping urban growth, and more.</p>
+    <p>Behind the scenes, we handle source fusion, cloud masking, terrain correction, and even cross-sensor harmonization. Insights arrive as ready-to-use JSON, GeoTIFF, CSV, or GeoJSON — built to drop into your application or data stack.</p>
+    <p>And it’s not a black box. Want to control thresholds? Use your own model? Fine-tune the spatial granularity? You can. That’s what we call <strong>data-to-decision sovereignty</strong>.</p>
+  </section>
+  
   <section class="demo-section">
     <h3>🌍 Natural language meets Earth data</h3>
-    <p>Type a natural language query below to see a structured response.</p>
+    <p>This is a preview of how StratimAI will respond to natural language queries — turning plain-English questions into real-time geospatial intelligence. No GIS skills needed.</p>
     <input type="text" id="queryInput" readonly>
     <pre id="responseBox"></pre>
   </section>
+  
+  <section class="positioning">
+    <h2>Why now?</h2>
+    <p>We are witnessing a transformation in Earth Observation. There are over 1000 active satellites now scan the planet every day, generating petabytes of data across optical, radar, thermal, and atmospheric sensors. The sheer volume of available EO data has outpaced the tools built to use it.</p>
+
+    <p>At the same time, the demand for timely, high-trust geospatial intelligence has never been higher. Climate resilience, energy infrastructure, agriculture, insurance, and defense — all rely increasingly on accurate Earth insights to drive decisions. But accessing and integrating this data remains complex, slow, and gated behind fragmented systems.</p>
+  
+    <p>StratimAI is designed for this moment. By abstracting away the technical barriers and making EO data accessible through clean APIs, we enable faster, more sovereign decision-making — without needing to rely on opaque models or vendor lock-in. We call it <strong>data-to-decision sovereignty</strong>: the ability to ask real-world questions, and get reliable, explainable answers — instantly, and on your own terms.</p>
+  
+    <p>As EO data becomes a foundation of global intelligence, StratimAI delivers the interface to use it. For developers. For analysts. For the planet.</p>
+    <p><strong>“Value to orbit” isn’t just a tagline. It’s our design principle: start with the insight needed on the ground, then build backwards from space to serve it.</strong></p>
+  </section>
+  
+  <section class="positioning">
+    <h2>Get Early Access</h2>
+    <p>Whether you're tracking land use, monitoring assets, mapping risk, or building public infrastructure — StratimAI gives you the intelligence layer you've been missing.</p>
+    <p><a href="mailto:hello@stratimai.com">Join our pilot program!</a></p>
+  </section>  
 
   <footer>
     <p>&copy; 2025 StratimAI. All rights reserved. | <a href="mailto:hello@stratimai.com">hello@stratimai.com</a></p>
@@ -156,7 +166,6 @@
   <script>
     const input = document.getElementById('queryInput');
     const responseBox = document.getElementById('responseBox');
-
     const demoQueries = [
       "Hej Mai, what is the likelihood of forest fire in Tjörn?",
       "Hej Mai, show me flood risk data for Malmö this week",
@@ -164,14 +173,11 @@
       "Hej Mai, how dry is the terrain around Örebro right now?",
       "Hej Mai, show me NDVI trends for Gothenburg"
     ];
-
     function simulateQuery(index = 0) {
       if (index >= demoQueries.length) index = 0;
-
       const query = demoQueries[index];
       input.value = '';
       responseBox.textContent = '';
-
       let qIndex = 0;
       const typeQuery = setInterval(() => {
         input.value += query[qIndex];
@@ -182,16 +188,15 @@
         }
       }, 50);
     }
-
     function simulateInference(index, query) {
       const responseLines = [
         '> Running geospatial inference...',
         '',
         `> Region: ${query.includes('Tjörn') ? "Tjörn, Sweden" :
-          query.includes('Malmö') ? "Malmö, Sweden" :
-            query.includes('Kiruna') ? "Kiruna, Sweden" :
-              query.includes('Örebro') ? "Örebro, Sweden" :
-                "Gothenburg, Sweden"}`,
+                  query.includes('Malmö') ? "Malmö, Sweden" :
+                  query.includes('Kiruna') ? "Kiruna, Sweden" :
+                  query.includes('Örebro') ? "Örebro, Sweden" :
+                  "Gothenburg, Sweden"}`,
         `> Report date: ${new Date().toISOString().split('T')[0]}`,
         '> Risk level: High',
         '> Confidence: 87%',
@@ -205,7 +210,6 @@
         '> - Activate local monitoring drones',
         '> - Limit open flames and machinery use'
       ];
-
       let lineIndex = 0;
       const printLine = setInterval(() => {
         responseBox.textContent += responseLines[lineIndex] + '\n';
@@ -216,11 +220,8 @@
         }
       }, 300);
     }
-
     let queryIndex = 0;
     simulateQuery(queryIndex);
   </script>
-
 </body>
-
 </html>
