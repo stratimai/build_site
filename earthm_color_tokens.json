@@ -1,0 +1,65 @@
+{
+  "color": {
+    "brand": {
+      "graphite": {
+        "value": "#2A2A2A"
+      },
+      "rose": {
+        "value": "#B4716B"
+      },
+      "olive": {
+        "value": "#626D5D"
+      },
+      "slate": {
+        "value": "#4E5D73"
+      },
+      "gold": {
+        "value": "#D4B27D"
+      },
+      "eggshell": {
+        "value": "#F4F1EC"
+      }
+    },
+    "text": {
+      "primary": {
+        "value": "#2A2A2A"
+      },
+      "secondary": {
+        "value": "#626D5D"
+      },
+      "invert": {
+        "value": "#F4F1EC"
+      }
+    },
+    "bg": {
+      "surface": {
+        "value": "#F4F1EC"
+      },
+      "alt": {
+        "value": "#EDE9E2"
+      }
+    },
+    "border": {
+      "default": {
+        "value": "#D7D3CC"
+      },
+      "strong": {
+        "value": "#626D5D"
+      }
+    },
+    "chart": {
+      "primary": {
+        "value": "#4E5D73"
+      },
+      "secondary": {
+        "value": "#626D5D"
+      },
+      "highlight": {
+        "value": "#D4B27D"
+      },
+      "alert": {
+        "value": "#B4716B"
+      }
+    }
+  }
+}

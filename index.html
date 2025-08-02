@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EarthM — Full-Stack Earth Intelligence Platform</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #F4F1EC 0%, #EDE9E2 100%);
+      min-height: 100vh;
+      color: #2A2A2A;
+      line-height: 1.6;
+    }
+    
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(215, 211, 204, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    
+    .nav-logo-img {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .nav-logo-text {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #2A2A2A;
+      letter-spacing: 0.1em;
+    }
+    
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    
+    .nav-link {
+      color: #4E5D73;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95em;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: #2A2A2A;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -4px;
+      left: 0;
+      background: #4E5D73;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .nav-cta {
+      background: linear-gradient(135deg, #4E5D73 0%, #626D5D 100%);
+      color: #F4F1EC;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9em;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(78, 93, 115, 0.2);
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(78, 93, 115, 0.3);
+      background: linear-gradient(135deg, #5a6a80 0%, #6e7a6a 100%);
+    }
+    
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+    
+    .nav-toggle-bar {
+      width: 24px;
+      height: 2px;
+      background: #2A2A2A;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 20px;
+      }
+      
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 280px;
+        height: calc(100vh - 70px);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 40px 30px;
+        gap: 24px;
+        transition: right 0.3s ease;
+        box-shadow: -4px 0 20px rgba(42, 42, 42, 0.1);
+      }
+      
+      .nav-menu.active {
+        right: 0;
+      }
+      
+      .nav-link {
+        font-size: 1.1em;
+        padding: 8px 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(215, 211, 204, 0.3);
+      }
+      
+      .nav-cta {
+        margin-top: 20px;
+        padding: 14px 24px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .nav-toggle {
+        display: flex;
+      }
+      
+      .nav-toggle.active .nav-toggle-bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      
+      .nav-toggle.active .nav-toggle-bar:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .nav-toggle.active .nav-toggle-bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+      
+      .hero {
+        padding: 140px 20px 100px;
+      }
+      
+      .hero-title {
+        font-size: 2.4em;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2em;
+      }
+    }
+    header,
+    section,
+    footer {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h1,
+    h2,
+    h3 {
+      color: #2A2A2A;
+    }
+    a {
+      color: #4E5D73;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    a:hover {
+      color: #2A2A2A;
+    }
+    a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background: #4E5D73;
+      transition: width 0.3s ease;
+    }
+    a:hover::after {
+      width: 100%;
+    }
+    .hero {
+      background: #FFFFFF;
+      border-bottom: 1px solid rgba(215, 211, 204, 0.4);
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(42, 42, 42, 0.04);
+      transition: all 0.3s ease;
+      padding: 170px 40px 120px;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 70px;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero-logo {
+      max-width: 120px;
+      margin-bottom: 30px;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    }
+    
+    .hero-logo:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+    
+    .hero-title {
+      font-size: 3.5em;
+      font-weight: 800;
+      margin-bottom: 0.5em;
+      color: #2A2A2A;
+      animation: fadeInUp 1s ease-out;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.4em;
+      color: #626D5D;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+    
+    .hero-cta {
+      margin-top: 40px;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 18px 36px;
+      font-size: 1.1em;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    
+    .cta-button.primary {
+      background: linear-gradient(135deg, #4E5D73 0%, #626D5D 100%);
+      color: #F4F1EC;
+      box-shadow: 0 8px 24px rgba(78, 93, 115, 0.3);
+    }
+    
+    .cta-button.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(78, 93, 115, 0.4);
+      background: linear-gradient(135deg, #5a6a80 0%, #6e7a6a 100%);
+    }
+    
+    .hero-tagline {
+      margin-top: 16px;
+      font-size: 0.9em;
+      color: #626D5D;
+      font-style: italic;
+    }
+    
+    .hero-footnote {
+      margin-top: 32px;
+      font-size: 0.9em;
+      color: #626D5D;
+      text-align: center;
+      opacity: 0.8;
+      font-weight: 400;
+    }
+    
+    .problem-section {
+      padding: 120px 0;
+      background: #FFFFFF;
+      text-align: center;
+    }
+    
+    .problem-section .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    
+    .section-header {
+      margin-bottom: 60px;
+    }
+    
+    .section-header h2 {
+      font-size: 2.8em;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #2A2A2A;
+      letter-spacing: -0.02em;
+    }
+    
+    .section-header p {
+      font-size: 1.2em;
+      color: #4E5D73;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    
+    .problem-card {
+      background: #FAFAFA;
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(215, 211, 204, 0.4);
+      box-shadow: 0 4px 16px rgba(42, 42, 42, 0.06);
+    }
+    
+    .problem-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(42, 42, 42, 0.1);
+    }
+    
+    .problem-icon {
+      font-size: 3em;
+      margin-bottom: 20px;
+      filter: grayscale(0.3);
+    }
+    
+    .problem-card h3 {
+      font-size: 1.3em;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #2A2A2A;
+    }
+    
+    .problem-card p {
+      color: #626D5D;
+      line-height: 1.5;
+      font-size: 1em;
+    }
+    
+    .solution-intro {
+      margin-top: 40px;
+    }
+    
+    .solution-intro p {
+      font-size: 1.3em;
+      color: #4E5D73;
+      font-weight: 500;
+    }
+    
+    .features-section {
+      padding: 120px 0;
+      background: #F8F8F8;
+      text-align: center;
+    }
+    
+    .features-section .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+    
+    .feature-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: left;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(215, 211, 204, 0.4);
+      box-shadow: 0 4px 16px rgba(42, 42, 42, 0.06);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(42, 42, 42, 0.1);
+    }
+    
+    .feature-icon {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.4em;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #2A2A2A;
+    }
+    
+    .feature-card p {
+      color: #626D5D;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-size: 1em;
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .feature-list li {
+      color: #4E5D73;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+      font-size: 0.95em;
+    }
+    
+    .feature-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #D4B27D;
+      font-weight: bold;
+    }
+    
+    .demo-section {
+      padding: 80px 0 120px 0;
+      background: #FFFFFF;
+      text-align: center;
+    }
+    
+    .demo-section .section-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    
+    .demo-header {
+      margin-bottom: 50px;
+    }
+    
+    .demo-header h2 {
+      font-size: 2.4em;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #2A2A2A;
+    }
+    
+    .demo-header p {
+      font-size: 1.2em;
+      color: #2A2A2A;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .demo-container {
+      background: #FAFAFA;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 8px 24px rgba(42, 42, 42, 0.08);
+      border: 1px solid rgba(215, 211, 204, 0.4);
+    }
+    
+    .demo-terminal {
+      background: #2A2A2A;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    
+    .terminal-header {
+      background: #1a1a1a;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #333;
+    }
+    
+    .terminal-controls {
+      display: flex;
+      gap: 8px;
+      margin-right: 20px;
+    }
+    
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    
+    .terminal-dot.red { background: #ff5f56; }
+    .terminal-dot.yellow { background: #ffbd2e; }
+    .terminal-dot.green { background: #27ca3f; }
+    
+    .terminal-title {
+      color: #999;
+      font-size: 0.9em;
+      font-family: monospace;
+    }
+    
+    .terminal-body {
+      padding: 20px;
+    }
+    
+    .demo-section input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      font-size: 1em;
+      margin-bottom: 10px;
+      border: none;
+      background: transparent;
+      color: #F4F1EC;
+      font-family: monospace;
+      border-radius: 0;
+      box-sizing: border-box;
+      outline: none;
+    }
+    
+    .demo-section input[type="text"]::placeholder {
+      color: #666;
+    }
+    
+    .demo-section pre {
+      width: 100%;
+      background: transparent;
+      color: #D4B27D;
+      padding: 0;
+      border-radius: 0;
+      font-size: 0.95em;
+      font-family: monospace;
+      overflow-x: auto;
+      box-sizing: border-box;
+      margin-top: 10px;
+      max-height: 400px;
+      min-height: 350px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      text-align: left;
+      border: none;
+    }
+    
+    .thinking-section {
+      padding: 120px 0;
+      background: #F8F8F8;
+      text-align: center;
+    }
+    
+    .thinking-section .section-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    
+    .thinking-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 60px;
+      margin-bottom: 40px;
+    }
+    
+    .thinking-item {
+      text-align: center;
+    }
+    
+    .thinking-icon {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    
+    .thinking-item h3 {
+      font-size: 1.4em;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #2A2A2A;
+    }
+    
+    .thinking-item p {
+      color: #626D5D;
+      line-height: 1.6;
+      font-size: 1.1em;
+    }
+    
+    .thinking-tagline {
+      margin-top: 60px;
+    }
+    
+    .thinking-tagline p {
+      font-size: 1.2em;
+      color: #4E5D73;
+      font-weight: 500;
+    }
+    
+    .vision-section {
+      padding: 120px 0;
+      background: #FFFFFF;
+      text-align: center;
+    }
+    
+    .vision-section .section-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    
+    .vision-content h2 {
+      font-size: 2.8em;
+      font-weight: 800;
+      margin-bottom: 30px;
+      color: #2A2A2A;
+      letter-spacing: -0.02em;
+    }
+    
+    .vision-content p {
+      font-size: 1.3em;
+      color: #626D5D;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .vision-content p:last-child {
+      font-size: 1.4em;
+      color: #4E5D73;
+      font-weight: 600;
+    }
+    .positioning,
+    .tech-context {
+      background: rgba(244, 241, 236, 0.95);
+      backdrop-filter: blur(10px);
+      margin-top: 30px;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(42, 42, 42, 0.15);
+      border: 1px solid rgba(215, 211, 204, 0.3);
+      transition: all 0.3s ease;
+    }
+    .positioning:hover,
+    .tech-context:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(42, 42, 42, 0.18);
+    }
+    .positioning p,
+    .tech-context p {
+      font-size: 1.1em;
+      color: #2A2A2A;
+    }
+    
+    .early-access-section {
+      padding: 120px 0;
+      background: #F8F8F8;
+      text-align: center;
+    }
+    
+    .early-access-section .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    
+    .early-access-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-top: 60px;
+    }
+    
+    .access-card {
+      background: #FAFAFA;
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(215, 211, 204, 0.4);
+      box-shadow: 0 4px 16px rgba(42, 42, 42, 0.06);
+    }
+    
+    .access-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(42, 42, 42, 0.1);
+    }
+    
+    .access-icon {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    
+    .access-card h3 {
+      font-size: 1.4em;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #2A2A2A;
+    }
+    
+    .access-card p {
+      color: #626D5D;
+      line-height: 1.6;
+      font-size: 1em;
+    }
+    
+    .final-cta-section {
+      padding: 120px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      background: #F8F8F8;
+      border-radius: 16px 16px 0 0;
+      margin-top: 60px;
+    }
+    
+    .cta-content h2 {
+      font-size: 2.8em;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #2A2A2A;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    
+    .cta-content p {
+      font-size: 1.3em;
+      color: #626D5D;
+      margin-bottom: 40px;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+    
+    .cta-button.secondary {
+      background: transparent;
+      color: #4E5D73;
+      border: 2px solid #4E5D73;
+      box-shadow: none;
+    }
+    
+    .cta-button.secondary:hover {
+      background: #4E5D73;
+      color: #F4F1EC;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(78, 93, 115, 0.3);
+    }
+    
+    .cta-benefits {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #4E5D73;
+      font-size: 0.95em;
+      font-weight: 500;
+    }
+    
+    .benefit-icon {
+      font-size: 1.2em;
+    }
+    footer {
+      font-size: 0.9em;
+      color: #626D5D;
+      text-align: center;
+      background: rgba(244, 241, 236, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 16px 16px 0 0;
+      margin-top: 40px;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+    
+    .demo-section {
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+    
+    .positioning {
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <span class="nav-logo-text" aria-label="EarthM">Ξ[M]</span>
+      </div>
+      
+      <div class="nav-menu" id="nav-menu">
+        <a href="#demo" class="nav-link">Product</a>
+        <a href="#vision" class="nav-link">About</a>
+        <a href="mailto:hello@earthm.ai?subject=General Inquiry" class="nav-link">Contact</a>
+        <a href="mailto:hello@earthm.ai?subject=Early Access Request" class="nav-cta">Request Early Access</a>
+      </div>
+      
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </div>
+    </div>
+  </nav>
+  
+  <header class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Monitor any land. Detect what matters. Act faster.</h1>
+      <p class="hero-subtitle">
+        EarthM lets you deploy autonomous agents that analyze satellite and OSINT data — detecting vegetation loss, drought risk, or early signs of wildfire. No GIS tools. Just ask Mai.
+      </p>
+      <div class="hero-cta">
+        <a href="mailto:hello@earthm.ai?subject=Early Access Request" class="cta-button primary">Request Early Access</a>
+        <p class="hero-tagline">
+          🛰️ Built for the age of climate, conflict, and autonomy. <br>
+          <span style="opacity: 0.8; font-size: 0.9em; font-style: normal;">EarthM is the full-stack platform behind Mai, your Earth intelligence co-pilot.</span>
+        </p>
+      </div>
+    </div>
+  </header>
+  
+  <div style="display: flex; justify-content: center; margin: 40px 0;">
+    <hr style="border: none; height: 1px; background: linear-gradient(90deg, transparent, #D7D3CC, transparent); width: 60%; max-width: 400px;">
+  </div>
+  
+   <section class="demo-section" id="demo">
+    <div class="section-content">
+      <div class="demo-header">
+        <h2>See Mai in action</h2>
+        <p>Here's an AI agent that doesn't just say 'there's a fire risk' — it tells you why, how sure it is, what's missing, and whether to act now or wait. And it does that for every AOI, every day, fully autonomously.</p>
+      </div>
+      
+      <div class="demo-container">
+        <div class="demo-terminal">
+          <div class="terminal-header">
+            <div class="terminal-controls">
+              <div class="terminal-dot red"></div>
+              <div class="terminal-dot yellow"></div>
+              <div class="terminal-dot green"></div>
+            </div>
+            <div class="terminal-title">EarthM Natural Language Interface</div>
+          </div>
+          <div class="terminal-body">
+            <input type="text" id="queryInput" readonly placeholder="Ask anything about Earth...">
+            <pre id="responseBox"></pre>
+          </div>
+        </div>
+      </div>
+      
+      <p style="margin-top: 20px; font-size: 0.9em; color: #626D5D; font-style: italic; text-align: center;">*These examples use past satellite imagery to simulate how Mai responds once data has been analyzed.</p>
+    </div>
+  </section> 
+  
+  <section class="thinking-section">
+    <div class="section-content">
+      <div class="thinking-grid">
+        <div class="thinking-item">
+          <div class="thinking-icon">⚡</div>
+          <h3>You ask. It already knows.</h3>
+          <p>Mai has been thinking ahead. Your questions feel instant because the analysis was ready before you even logged in.</p>
+        </div>
+        
+        <div class="thinking-item">
+          <div class="thinking-icon">👁️</div>
+          <h3>Even when you're not watching, Mai is.</h3>
+          <p>You're not querying a database. You're checking in with a copilot that never stops monitoring what matters to you.</p>
+        </div>
+      </div>
+      
+      <div class="thinking-tagline">
+        <p><em>EarthM isn't just faster. It's ongoing.</em></p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="problem-section">
+    <div class="section-content">
+      <div class="section-header">
+        <h2>Satellites see everything. But humans still struggle to act.</h2>
+        <p>Every day, thousands of sensors orbit our planet, capturing petabytes of critical signals. Yet most of it remains buried in formats, platforms, and pipelines no one can use—until it's too late.</p>
+      </div>
+      
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="problem-icon">🔗</div>
+          <h3>Fragmented Sources</h3>
+          <p>Dozens of constellations, each with unique formats, APIs, and quirks</p>
+        </div>
+        
+        <div class="problem-card">
+          <div class="problem-icon">⚙️</div>
+          <h3>Heavy Processing</h3>
+          <p>Cloud masks, georeferencing, and scan conversion burden falls on users</p>
+        </div>
+        
+        <div class="problem-card">
+          <div class="problem-icon">👥</div>
+          <h3>Specialist Silos</h3>
+          <p>Requires rare expertise in remote sensing, GIS, and ML just for basic queries</p>
+        </div>
+        
+        <div class="problem-card">
+          <div class="problem-icon">⏱️</div>
+          <h3>Slow Time-to-Insight</h3>
+          <p>Complex sensor data takes too long to transform into actionable intelligence</p>
+        </div>
+      </div>
+      
+      <div class="solution-intro">
+        <p><strong>Earth intelligence should be obvious. Available to anyone. When it matters most.</strong></p>
+        <p><strong>When Mai answers instantly, it's because she never stopped thinking.</strong></p>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  <section class="vision-section" id="vision">
+    <div class="section-content">
+      <div class="vision-content">
+        <h2>From pixels to presence</h2>
+        <p>EarthM is the beginning of something larger. An AI-native interface for how the next generation will understand our planet. Always watching. Always thinking. Always ready.</p>
+        <p><strong>This is more than Earth observation. This is Earth intelligence.</strong></p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="final-cta-section">
+    <div class="cta-content">
+      <h2>Ready to build with the interface layer for planetary insight?</h2>
+      <p>Join the early access program and help shape the future of Earth intelligence — from monitoring AOIs to deploying your own agents.</p>
+      
+      <div class="cta-buttons">
+        <a href="mailto:hello@earthm.ai?subject=Early Access Request" class="cta-button primary">Request Early Access</a>
+        <a href="mailto:hello@earthm.ai?subject=Let's Talk About EarthM" class="cta-button secondary">Start a Conversation</a>
+      </div>
+      
+      <div class="cta-benefits">
+        <div class="benefit-item">
+          <span class="benefit-icon">🚀</span>
+          <span>Early adopters get free API credits</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🔧</span>
+          <span>Direct access to our engineering team</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">📊</span>
+          <span>Help shape our product roadmap</span>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+  <footer>
+    <p>&copy; 2025 EarthM. All rights reserved. | <a href="mailto:hello@earthm.ai">hello@earthm.ai</a></p>
+  </footer>
+
+  <script>
+    const input = document.getElementById('queryInput');
+    const responseBox = document.getElementById('responseBox');
+    const demoQueries = [
+      "Hej Mai, what is the likelihood of forest fire in Tjörn?",
+      "Hej Mai, show me flood risk data for Malmö this week",
+      "Hej Mai, is the land in Kiruna suitable for reforestation?",
+      "Hej Mai, how dry is the terrain around Örebro right now?",
+      "Hej Mai, show me NDVI trends for Gothenburg"
+    ];
+    function simulateQuery(index = 0) {
+      if (index >= demoQueries.length) index = 0;
+      const query = demoQueries[index];
+      input.value = '';
+      responseBox.textContent = '';
+      let qIndex = 0;
+      const typeQuery = setInterval(() => {
+        input.value += query[qIndex];
+        qIndex++;
+        if (qIndex >= query.length) {
+          clearInterval(typeQuery);
+          simulateInference(index, query);
+        }
+      }, 50);
+    }
+    function simulateInference(index, query) {
+      const responseLines = [
+        '> Running geospatial inference...',
+        '',
+        `> Region: ${query.includes('Tjörn') ? "Tjörn, Sweden" :
+                  query.includes('Malmö') ? "Malmö, Sweden" :
+                  query.includes('Kiruna') ? "Kiruna, Sweden" :
+                  query.includes('Örebro') ? "Örebro, Sweden" :
+                  "Gothenburg, Sweden"}`,
+        `> Report date: ${new Date().toISOString().split('T')[0]}`,
+        '> Risk level: High',
+        '> Confidence: 87%',
+        '> Key factors:',
+        '> - Vegetation dryness: 0.92',
+        '> - Temperature anomaly: +1.4°C',
+        '> - Wind speed: 6.2 m/s',
+        '> - NDVI: 0.21, LSWI: -0.34',
+        '> Recommendations:',
+        '> - Issue warning to forestry operators',
+        '> - Activate local monitoring drones',
+        '> - Limit open flames and machinery use'
+      ];
+      let lineIndex = 0;
+      const printLine = setInterval(() => {
+        responseBox.textContent += responseLines[lineIndex] + '\n';
+        lineIndex++;
+        if (lineIndex >= responseLines.length) {
+          clearInterval(printLine);
+          setTimeout(() => simulateQuery(index + 1), 6000);
+        }
+      }, 300);
+    }
+    let queryIndex = 0;
+    simulateQuery(queryIndex);
+    
+    // Navigation functionality
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    // Mobile menu toggle
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 70; // Account for fixed nav height
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
